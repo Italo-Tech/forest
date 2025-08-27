@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <title>Forest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text&display=swap" rel="stylesheet" />
+  <link href="./output.css" rel="stylesheet" />
+</head>
+
+<body class="bg-verde-800 font-sans">
+  <div class="container mt-4 flex justify-center md:justify-start">
+    <div class="inline-flex items-center rounded-md bg-verde-900">
+      <span class="neon size-2 block relative -left-1"></span>
+      <div class="flex text-verde-300 divide-x-2 divide-verde-800">
+        <div class="px-4 py-2 capitalize" id="dia">segunda</div>
+        <div class="px-4 py-2" id="temperatura">25º</div>
+        <div class="px-4 py-2" id="tempo">🌤️</div>
+      </div>
+    </div>
+  </div>
+
+  <header class="container flex items-center justify-between gap-8 py-8">
+    <a href="./">
+      <img src="./img/forest.svg" alt="Forest" />
+    </a>
+    <nav id="mobile-menu" class="lg:block hidden items-center z-40 max-lg:fixed max-lg:w-full max-lg:inset-0">
+      <div class="fixed lg:hidden inset-0 bg-verde-950/40 backdrop-blur-md"></div>
+      <ul class="text-white text-2xl max-lg:divide-y-2 max-lg:divide-white/10 max-lg:z-50 max-lg:absolute max-lg:p-8 max-lg:w-full lg:text-xl lg:flex lg:flex-wrap lg:gap-8">
+        <li class="animate-slide-in opacity-0 animate-1">
+          <a class="p-4 lg:px-0 lg:py-2 block max-lg:hover:bg-white/10 lg:hover:underline lg:hover:underline-offset-8" href="#acomodacoes">Acomodações</a>
+        </li>
+        <li class="animate-slide-in opacity-0 animate-2">
+          <a class="p-4 lg:px-0 lg:py-2 block max-lg:hover:bg-white/10 lg:hover:underline lg:hover:underline-offset-8" href="#eventos">Eventos</a>
+        </li>
+        <li class="animate-slide-in opacity-0 animate-3">
+          <a class="p-4 lg:px-0 lg:py-2 block max-lg:hover:bg-white/10 lg:hover:underline lg:hover:underline-offset-8" href="#experiencias">Experiências</a>
+        </li>
+        <li class="animate-slide-in opacity-0 animate-4">
+          <a class="p-4 lg:px-0 lg:py-2 block max-lg:hover:bg-white/10 lg:hover:underline lg:hover:underline-offset-8" href="#contato">Contato</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button id="mobile-button" class="btn flex items-center gap-3 text-verde-900 py-1 rounded-full lg:hidden">
+      Menu
+      <span class="h-3 w-4 flex flex-col justify-between *:h-0.5 *:rounded-md *:bg-verde-800">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </header>
+
+  <script>
+    const video = document.getElementById('video');
+    const temperatura = document.getElementById('temperatura');
+    const tempo = document.getElementById('tempo');
+    const dia = document.getElementById('dia');
+
+    const random = Math.floor(Math.random() * 10) + 20;
+    temperatura.innerText = `${random}º`;
+    tempo.innerText = random < 25 ? `🌧️ ${random + 5}%` : `🌤️`;
+
+    const date = new Date();
+    dia.innerText = date
+      .toLocaleDateString('pt-BR', {
+        weekday: 'long',
+      })
+      .replace('-feira', '');
+
+    video.src = random < 25 ? `./img/video_chuva.mp4` : `./img/video_sol.mp4`;
+
+    const mobileButton = document.getElementById('mobile-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+    });
+
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    });
+  </script>
+</body>
+
+</html>
